@@ -61,7 +61,10 @@ public class SoundEngineMixin {
 
 	@ModifyArg(index = 0, at = @At(value = "INVOKE", target = "Lnet/minecraft/util/Mth;clamp(FFF)F"), method = "calculateVolume(FLnet/minecraft/sounds/SoundSource;)F")
 	private float bergamuateAttenuate(float volume) {
-		if (tmpSound != null && shouldSilence(tmpSound)) {
+		if (tmpSound != null) {
+			if (!shouldSilence(tmpSound)) {
+				return volume;
+			}
 			// We halve the volume for each flower (see return below)
 			// halving 8 times already brings the multiplier to near zero, so no
 			// need to keep going if we've seen more than 8.
