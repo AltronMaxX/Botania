@@ -61,7 +61,9 @@ public class SoundEngineMixin {
 
 	@ModifyArg(index = 0, at = @At(value = "INVOKE", target = "Lnet/minecraft/util/Mth;clamp(FFF)F"), method = "calculateVolume(FLnet/minecraft/sounds/SoundSource;)F")
 	private float bergamuateAttenuate(float volume) {
-		if (true) return volume;
+		if (true) {
+			return volume;
+		}
 		if (tmpSound != null) {
 			if (!shouldSilence(tmpSound)) {
 				return volume;
